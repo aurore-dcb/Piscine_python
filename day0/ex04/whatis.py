@@ -1,0 +1,13 @@
+import sys
+
+len = len(sys.argv)
+try:
+    assert len <= 2, "more than one argument is provided"
+    if (len == 2):
+        assert sys.argv[1].lstrip('-').isdigit(), "argument is not an integer"
+        if (int(sys.argv[1]) % 2 == 0):
+            print("I'm Even.")
+        else:
+            print("I'm Odd.")
+except AssertionError as msg:
+    print("AssertionError:", msg)
