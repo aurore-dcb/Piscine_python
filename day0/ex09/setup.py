@@ -8,9 +8,9 @@ setup(
     description="My first package creation",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/aurore-dcb/Piscine_python/tree/main/day0/ex09",
+    url="https://github.com/aurore-dcb/Piscine_python/",
     project_urls={
-        "Bug Tracker": "https://github.com/aurore-dcb/Piscine_python/tree/main/day0/ex09",
+        "Bug Tracker": "https://github.com/aurore-dcb/Piscine_python/",
     },
     classifiers=[
         "Programming Language :: Python :: 3",

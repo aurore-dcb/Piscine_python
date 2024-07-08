@@ -16,13 +16,13 @@ def main():
                 str = sys.stdin.read()
             else:
                 str = sys.argv[1]
-        print("The text contains", len(str), "characters:")
-        print(sum(1 for c in str if c.isupper()), "upper letters")
-        print(sum(1 for c in str if c.islower()), "lower letters")
+        print("The text contains", len(str), "character(s):")
+        print(sum(1 for c in str if c.isupper()), "upper letter(s)")
+        print(sum(1 for c in str if c.islower()), "lower letter(s)")
         ponctuation = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
-        print(sum(1 for c in str if c in ponctuation), "ponctuation marks")
-        print(sum(1 for c in str if c.isspace()), "spaces")
-        print(sum(1 for c in str if c.isdigit()), "digits")
+        print(sum(1 for c in str if c in ponctuation), "ponctuation mark(s)")
+        print(sum(1 for c in str if c.isspace()), "space(s)")
+        print(sum(1 for c in str if c.isdigit()), "digit(s)")
 
     except AssertionError as msg:
         print("AssertionError:", msg)
