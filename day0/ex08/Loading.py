@@ -1,4 +1,5 @@
 def ft_tqdm(lst: range) -> None:
+    """ iterate over a list to display a progress bar. """
     length = len(lst)
 
     def print_progress(i):

@@ -12,6 +12,7 @@ NESTED_MORSE = {" ": "/", "A": ".-", "B": "-...", "C": "-.-.", "D": "-..",
 
 
 def main():
+    """ The program encodes a given string into Morse Code. """
     try:
         assert len(sys.argv) == 2
         assert type(sys.argv[1]) is str

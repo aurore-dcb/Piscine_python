@@ -3,6 +3,9 @@ from ft_filter import ft_filter
 
 
 def main():
+    """ The program output a list of words from a given string S \
+        that have a length greater than a given number N.
+    """
     try:
         assert len(sys.argv) == 3
         assert type(sys.argv[1]) is str
