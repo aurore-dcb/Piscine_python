@@ -10,9 +10,11 @@ def main():
     try:
         assert len(sys.argv) <= 2, "more than one argument is provided"
         if (len(sys.argv) == 1):
+            print("What is the text to count?")
             str = sys.stdin.read()
         else:
             if (sys.argv[1] is None or sys.argv[1] == ""):
+                print("What is the text to count?")
                 str = sys.stdin.read()
             else:
                 str = sys.argv[1]
