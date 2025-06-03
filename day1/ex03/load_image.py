@@ -13,5 +13,5 @@ def ft_load(path: str) -> list:
     print(array[0,:3])
     print("...")
     print(array[-1,-3:])
-    return array
+    return array.tolist()
 

@@ -9,7 +9,7 @@ def zoom(array: list, zoom_size: int) -> list:
     zoomed_image = array[center_y - zoom_size//2:center_y + zoom_size//2,
                          center_x - zoom_size//2:center_x + zoom_size//2, :]
     gray_image = Image.fromarray(zoomed_image).convert('L')
-    zoomed_image_gray = np.array(gray_image)
+    zoomed_image_gray = np.asarray(gray_image)
     new_arr = zoomed_image_gray.reshape(zoom_size, zoom_size, 1)
     print("New shape after slicing:", new_arr.shape, "or", zoomed_image_gray.shape)
     np.set_printoptions(threshold=6, edgeitems=3, formatter={'int': '{:3}'.format})
