@@ -1,44 +1,49 @@
 from load_image import ft_load
 import matplotlib.pyplot as plt
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
 import numpy as np
 
+
 def zoom(array: list, zoom_size: int) -> list:
-    """ Extracts a square centered from the given image of a size equals to 'zoom_size' pixels. """
+    """ Extracts a square centered from the given image of a size \
+        equals to 'zoom_size' pixels. """
     center_x, center_y = array.shape[1] // 2, array.shape[0] // 2
     zoomed_image = array[center_y - zoom_size//2:center_y + zoom_size//2,
                          center_x - zoom_size//2:center_x + zoom_size//2, :]
     gray_image = Image.fromarray(zoomed_image).convert('L')
     zoomed_image_gray = np.asarray(gray_image)
     new_arr = zoomed_image_gray.reshape(zoom_size, zoom_size, 1)
-    print("New shape after slicing:", new_arr.shape, "or", zoomed_image_gray.shape)
-    np.set_printoptions(threshold=6, edgeitems=3, formatter={'int': '{:3}'.format})
+    print("New shape after slicing:", new_arr.shape, end=" ")
+    print("or", zoomed_image_gray.shape)
+    np.set_printoptions(threshold=6, edgeitems=3,
+                        formatter={'int': '{:3}'.format})
     print(new_arr[:1])
+    # print(new_arr)
     return new_arr
+
 
 def main():
     try:
         arr = ft_load("../animal.jpeg")
-    except:
+    except (UnidentifiedImageError, FileNotFoundError, PermissionError):
         print("Error: something went wrong while loading the image.")
-        return
-    try:    
+        exit(1)
+    try:
         fig, axes = plt.subplots(1, 2, figsize=(12, 6))
         zoom_image = zoom(arr, 400)
     except:
         print("Error: something went wrong while zooming.")
-        return
+        exit(1)
     try:
         axes[0].imshow(arr)
         axes[0].set_title('Original Image')
         axes[1].imshow(zoom_image, cmap='gray')
         axes[1].set_title('Zoomed Image')
-        
-        plt.tight_layout()
         plt.show()
     except:
         print("Error: something went wrong while displaying the image.")
-        return
+        exit(1)
+
 
 if __name__ == "__main__":
     main()
