@@ -1,11 +1,12 @@
 import numpy as np
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
+
 
 def ft_load(path: str) -> list:
     """ Print the format and pixels content of a given image. """
     try:
         img = Image.open(path)
-    except:
+    except (UnidentifiedImageError, FileNotFoundError):
         print("Error:", "cannot open image")
         return
     array = np.array(img)

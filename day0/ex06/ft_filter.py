@@ -1,6 +1,6 @@
 def ft_filter(fct, iterable):
     """ft_filter(function or None, iterable) --> filter object
-    
+
     Return an iterator yielding those items of iterable for which \
 function(item)\nis true. If function is None, return the items that \
 are true. """

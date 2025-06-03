@@ -1,4 +1,5 @@
-def give_bmi(height: list[int | float], weight: list[int | float]) -> list[int | float]:
+def give_bmi(height: list[int | float], weight: list[int | float]) \
+        -> list[int | float]:
     try:
         assert isinstance(height, list)
         assert isinstance(weight, list)
