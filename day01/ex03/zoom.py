@@ -7,41 +7,41 @@ import numpy as np
 def zoom(array: list, zoom_size: int) -> list:
     """ Extracts a square centered from the given image of a size \
         equals to 'zoom_size' pixels. """
+    if zoom_size > array.shape[0] or zoom_size > array.shape[1]:
+        zoom_size = min(array.shape[0], array.shape[1])
     center_x, center_y = array.shape[1] // 2, array.shape[0] // 2
     zoomed_image = array[center_y - zoom_size//2:center_y + zoom_size//2,
                          center_x - zoom_size//2:center_x + zoom_size//2, :]
-    gray_image = Image.fromarray(zoomed_image).convert('L')
-    zoomed_image_gray = np.asarray(gray_image)
-    new_arr = zoomed_image_gray.reshape(zoom_size, zoom_size, 1)
-    print("New shape after slicing:", new_arr.shape, end=" ")
-    print("or", zoomed_image_gray.shape)
-    np.set_printoptions(threshold=6, edgeitems=3,
-                        formatter={'int': '{:3}'.format})
-    print(new_arr[:1])
-    # print(new_arr)
-    return new_arr
+    return zoomed_image
+
+def ft_gray(array: list) -> list:
+    """ Convert the given image to grayscale. """
+    gray_image = Image.fromarray(array).convert('L')
+    gray_array = np.asarray(gray_image)
+    return gray_array.reshape(gray_array.shape[0], gray_array.shape[1], 1)
 
 
 def main():
+    zoom_size = 400
     try:
         arr = ft_load("../animal.jpeg")
-    except (UnidentifiedImageError, FileNotFoundError, PermissionError):
-        print("Error: something went wrong while loading the image.")
-        exit(1)
-    try:
+        print("The shape of image is:", arr.shape)
+        print(arr[0, :3] , "\n...\n" , arr[-1, -3:])
         fig, axes = plt.subplots(1, 2, figsize=(12, 6))
-        zoom_image = zoom(arr, 400)
-    except:
-        print("Error: something went wrong while zooming.")
-        exit(1)
-    try:
+        zoom_image = zoom(arr, zoom_size)
+        gray_image = ft_gray(zoom_image)
+        print("New shape after slicing:", gray_image.shape, end=" ")
+        print("or", gray_image.shape[:2])
+        np.set_printoptions(threshold=6, edgeitems=3,
+                        formatter={'int': '{:3}'.format})
+        print(gray_image[:1])
         axes[0].imshow(arr)
         axes[0].set_title('Original Image')
-        axes[1].imshow(zoom_image, cmap='gray')
+        axes[1].imshow(gray_image, cmap='gray')
         axes[1].set_title('Zoomed Image')
         plt.show()
-    except:
-        print("Error: something went wrong while displaying the image.")
+    except Exception as e:
+        print(f"Error: something went wrong: {e}")
         exit(1)
 
 

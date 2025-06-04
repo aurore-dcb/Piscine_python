@@ -1,13 +1,13 @@
 import numpy as np
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
+
 
 def ft_load(path: str) -> list:
-    """ Load the given image as an Image object and return an array of its content. """
+    """ Load the given image as an Image object \
+        and Print the format and pixels content"""
     try:
-        img = Image.open(path)
-    except:
-        print("Error:", "cannot open image")
-        return
-    array = np.array(img)
+        assert isinstance(path, str)
+    except AssertionError:
+        raise TypeError("The path in ft_load(path) must be a string.")
+    array = np.asarray(Image.open(path))
     return array
-
