@@ -31,7 +31,7 @@ def main():
         zoom_image = zoom(arr, zoom_size)
         gray_image = ft_gray(zoom_image)
         print("New shape after slicing:", gray_image.shape, end=" ")
-        print("or", gray_image.shape[:2])
+        print("or", np.squeeze(gray_image).shape)
         np.set_printoptions(threshold=6, edgeitems=3,
                         formatter={'int': '{:3}'.format})
         print(gray_image[:1])

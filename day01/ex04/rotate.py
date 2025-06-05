@@ -23,33 +23,37 @@ def ft_gray(array: list) -> list:
 
 def rotate(array: list) -> list:
     """ Rotate the given image 90 degrees to the left """
-    rotate_image = np.zeros((array.shape[0], array.shape[1], array.shape[2]), dtype=np.uint8)
+    rotate_image = np.zeros((array.shape[1], array.shape[0], array.shape[2]), dtype=np.uint8)
     for i in range(array.shape[0]):
         for j in range(array.shape[1]):
-            # tmp = zoomed_image[i][j]
-            # rotate_image[i][j] = zoomed_image[j][i]
-            rotate_image[array.shape[1] - 1 - j][i] = array[i][j]
-    np.set_printoptions(threshold=6, edgeitems=3, formatter={'int': '{:3}'.format})
-    # print(rotate_image)
+            rotate_image[j][i] = array[i][j]
     return rotate_image
 
 def main():
     zoom_size = 400
     try:
         arr = ft_load("../animal.jpeg")
-        # gray_image = ft_gray(arr)
         zoomed_image = zoom(arr, zoom_size)
-        rotate_image = rotate(zoomed_image)
-        print("New shape after Transpose:", rotate_image.shape)
+        gray_image = ft_gray(zoomed_image)
+        np.set_printoptions(threshold=100, edgeitems=3, formatter={'int': '{:3}'.format})
+        print("The shape of image is:", gray_image.shape, "or ", np.squeeze(gray_image).shape)
+        print(gray_image[:1])
+        rotate_image = np.squeeze(rotate(gray_image))
+        print("New shape after Transpose:", np.squeeze(rotate_image).shape)
+        print(rotate_image[[0]], "\n   ...\n", rotate_image[[-1]])
     except Exception as e:
         print(f"Error: something went wrong: {e}")
         exit(1)
     try:
-        fig, axes = plt.subplots(1, 2, figsize=(12, 6))
-        axes[0].imshow(zoomed_image, cmap='gray')
-        axes[0].set_title('Zoomed Image')
-        axes[1].imshow(rotate_image, cmap='gray')
-        axes[1].set_title('Rotate Image')
+        fig, axes = plt.subplots(2, 2, figsize=(12, 12))
+        axes[0][0].imshow(arr)
+        axes[0][0].set_title('Original Image')
+        axes[0][1].imshow(zoomed_image)
+        axes[0][1].set_title('Zoomed Image')
+        axes[1][0].imshow(gray_image, cmap='gray')
+        axes[1][0].set_title('Gray Image')
+        axes[1][1].imshow(rotate_image, cmap='gray')
+        axes[1][1].set_title('Rotate Image')
         plt.tight_layout
         plt.show()
     except Exception as e:
