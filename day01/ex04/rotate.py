@@ -14,6 +14,7 @@ def zoom(array: list, zoom_size: int) -> list:
                          center_x - zoom_size//2:center_x + zoom_size//2, :]
     return zoomed_image
 
+
 def ft_gray(array: list) -> list:
     """ Convert the given image to grayscale. """
     gray_image = Image.fromarray(array).convert('L')
@@ -23,11 +24,13 @@ def ft_gray(array: list) -> list:
 
 def rotate(array: list) -> list:
     """ Rotate the given image 90 degrees to the left """
-    rotate_image = np.zeros((array.shape[1], array.shape[0], array.shape[2]), dtype=np.uint8)
+    shape = array.shape
+    rotate_image = np.zeros((shape[1], shape[0], shape[2]), dtype=np.uint8)
     for i in range(array.shape[0]):
         for j in range(array.shape[1]):
             rotate_image[j][i] = array[i][j]
     return rotate_image
+
 
 def main():
     zoom_size = 400
@@ -35,12 +38,13 @@ def main():
         arr = ft_load("../animal.jpeg")
         zoomed_image = zoom(arr, zoom_size)
         gray_image = ft_gray(zoomed_image)
-        np.set_printoptions(threshold=100, edgeitems=3, formatter={'int': '{:3}'.format})
-        print("The shape of image is:", gray_image.shape, "or ", np.squeeze(gray_image).shape)
+        np.set_printoptions(threshold=100, edgeitems=3)
+        print("The shape of image is:", gray_image.shape, end=" ")
+        print("or ", np.squeeze(gray_image).shape)
         print(gray_image[:1])
         rotate_image = np.squeeze(rotate(gray_image))
         print("New shape after Transpose:", np.squeeze(rotate_image).shape)
-        print(rotate_image[[0]], "\n   ...\n", rotate_image[[-1]])
+        print(rotate_image)
     except Exception as e:
         print(f"Error: something went wrong: {e}")
         exit(1)
@@ -59,6 +63,7 @@ def main():
     except Exception as e:
         print(f"Error: something went wrong while displaying the image: {e}")
         exit(1)
+
 
 if __name__ == "__main__":
     main()

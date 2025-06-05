@@ -1,6 +1,6 @@
 from load_image import ft_load
 import matplotlib.pyplot as plt
-from PIL import Image, UnidentifiedImageError
+from PIL import Image
 import numpy as np
 
 
@@ -14,6 +14,7 @@ def zoom(array: list, zoom_size: int) -> list:
                          center_x - zoom_size//2:center_x + zoom_size//2, :]
     return zoomed_image
 
+
 def ft_gray(array: list) -> list:
     """ Convert the given image to grayscale. """
     gray_image = Image.fromarray(array).convert('L')
@@ -26,14 +27,13 @@ def main():
     try:
         arr = ft_load("../animal.jpeg")
         print("The shape of image is:", arr.shape)
-        print(arr[0, :3] , "\n...\n" , arr[-1, -3:])
+        print(arr[0, :3], "\n...\n", arr[-1, -3:])
         fig, axes = plt.subplots(1, 2, figsize=(12, 6))
         zoom_image = zoom(arr, zoom_size)
         gray_image = ft_gray(zoom_image)
         print("New shape after slicing:", gray_image.shape, end=" ")
         print("or", np.squeeze(gray_image).shape)
-        np.set_printoptions(threshold=6, edgeitems=3,
-                        formatter={'int': '{:3}'.format})
+        np.set_printoptions(threshold=6, edgeitems=3)
         print(gray_image[:1])
         axes[0].imshow(arr)
         axes[0].set_title('Original Image')
