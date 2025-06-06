@@ -2,8 +2,10 @@ from load_csv import load
 import matplotlib.pyplot as plt
 import numpy as np
 
+
 def main():
     aff_life('France')
+
 
 def aff_life(country: str):
     """Display a graph with information about a country."""
@@ -19,6 +21,7 @@ def aff_life(country: str):
     else:
         print("No data available.")
     return
+
 
 if __name__ == "__main__":
     main()
