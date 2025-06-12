@@ -2,18 +2,18 @@ from S1E9 import Character
 
 
 class Baratheon(Character):
-    """Baratheon class inheriting from Character"""
+    """Representing the Baratheon family."""
 
     def __init__(self, first_name, is_alive=True):
         """Constructor for Baratheon class"""
-        super().__init__(first_name, is_alive)
+        self.first_name = first_name
+        self.is_alive = is_alive
         self.family_name = "Baratheon"
         self.eyes = "brown"
         self.hairs = "dark"
 
     def __str__(self):
         return f"Vector: ('{self.family_name}', '{self.eyes}', '{self.hairs}')"
-        # return [self.family_name, self.eyes, self.hairs]
     
     def __repr__(self):
         return self.__str__()
@@ -33,10 +33,19 @@ class Lannister(Character):
 
     def __init__(self, first_name, is_alive=True):
         """Constructor for Lannister class"""
-        super().__init__(first_name, is_alive)
+        self.first_name = first_name
+        self.is_alive = is_alive
         self.family_name = "Lannister"
         self.eyes = "blue"
         self.hairs = "light"
+
+    def __str__(self):
+        """String representation of the Lannister character"""
+        return f"Vector: ('{self.family_name}', '{self.eyes}', '{self.hairs}')"
+    
+    def __repr__(self):
+        """Representation of the Lannister character"""
+        return self.__str__()
 
     def die(self):
         """Stark method to set the character as dead"""
@@ -46,6 +55,7 @@ class Lannister(Character):
         """Stark method to check if the character is alive"""
         return self.is_alive
 
-    # decorateur
-    def create_lannister():
-        pass
+    @classmethod
+    def create_lannister(cls, first_name, is_alive=True):
+        """Factory method to create a Lannister character"""
+        return cls(first_name, is_alive)
