@@ -1,5 +1,5 @@
 import numpy as np
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
 
 
 def ft_load(path: str) -> list:
@@ -9,5 +9,8 @@ def ft_load(path: str) -> list:
         assert isinstance(path, str)
     except AssertionError:
         raise TypeError("The path in ft_load(path) must be a string.")
-    array = np.asarray(Image.open(path))
+    try:
+        array = np.asarray(Image.open(path))
+    except (UnidentifiedImageError, FileNotFoundError, PermissionError):
+        raise Exception("Cannot open image: " + path)
     return array

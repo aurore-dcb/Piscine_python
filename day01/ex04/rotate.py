@@ -38,10 +38,9 @@ def main():
         arr = ft_load("../animal.jpeg")
         zoomed_image = zoom(arr, zoom_size)
         gray_image = ft_gray(zoomed_image)
-        np.set_printoptions(threshold=100, edgeitems=3)
         print("The shape of image is:", gray_image.shape, end=" ")
         print("or ", np.squeeze(gray_image).shape)
-        print(gray_image[:1])
+        print(gray_image)
         rotate_image = np.squeeze(rotate(gray_image))
         print("New shape after Transpose:", np.squeeze(rotate_image).shape)
         print(rotate_image)
@@ -58,7 +57,6 @@ def main():
         axes[1][0].set_title('Gray Image')
         axes[1][1].imshow(rotate_image, cmap='gray')
         axes[1][1].set_title('Rotate Image')
-        plt.tight_layout
         plt.show()
     except Exception as e:
         print(f"Error: something went wrong while displaying the image: {e}")
