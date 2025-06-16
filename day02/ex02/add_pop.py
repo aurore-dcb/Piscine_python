@@ -25,7 +25,7 @@ def format_func(value, tick_number):
     return f'{int(value / 1000000)}M'
 
 
-def aff_pop(country1: str, country2: str):
+def aff_pop(country1: str, country2: str) -> None:
     """Display a graph that compare two country population"""
     data = load("../population_total.csv")
     if data is not None:

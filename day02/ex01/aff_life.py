@@ -3,11 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def main():
-    aff_life('France')
-
-
-def aff_life(country: str):
+def aff_life(country: str) -> None:
     """Display a graph with information about a country."""
     data = load("../life_expectancy_years.csv")
     if data is not None:
@@ -21,6 +17,10 @@ def aff_life(country: str):
     else:
         print("No data available.")
     return
+
+
+def main():
+    aff_life('France')
 
 
 if __name__ == "__main__":
