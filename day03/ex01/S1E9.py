@@ -12,12 +12,12 @@ class Character(ABC):
     @abstractmethod
     def die(self):
         """Method to set the character as dead"""
-        pass
+        self.is_alive = False
 
     @abstractmethod
     def is_alive(self):
         """Method to check if the character is alive"""
-        pass
+        return self.is_alive
 
 
 class Stark(Character):
