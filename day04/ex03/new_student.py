@@ -11,6 +11,7 @@ def generate_id() -> str:
 
 @dataclass
 class Student:
+    """Class representing a student"""
 
     name: str
     surname: str
