@@ -12,11 +12,10 @@ def generate_id() -> str:
 @dataclass
 class Student:
 
-    name: str = field(init=True)
-    surname: str = field(init=True)  # marche sans rien
-    active: str = True
+    name: str
+    surname: str
+    active: bool = True
     login: str = field(init=False)
-    # field avec default_factory pour générer un ID a chaque nouvelle instance :
     id: str = field(init=False, default_factory=generate_id)
 
     def __post_init__(self):

@@ -8,8 +8,7 @@ def check_list(sorted_num: list):
     if len(sorted_num) == 0:
         raise ValueError("List is empty")
     if not all(isinstance(i, (int, float)) for i in sorted_num):
-        # type error ?
-        raise ValueError("List must contain only numbers")
+        raise TypeError("List must contain only numbers")
     return True
 
 
@@ -83,7 +82,7 @@ def ft_statistics(*args: any, **kwargs: any) -> None:
                         print("var :", ft_variance(numbers))
                     case _:
                         pass
-            except ValueError as e:
+            except (ValueError, TypeError) as e:
                 print("ERROR:", e)
         else:
             print("ERROR")
