@@ -27,5 +27,5 @@ class calculator:
             self.vector = [elem / object for elem in self.vector]
             print(self.vector)
         except AssertionError as msg:
-            print("AssertionError:", msg)
-            exit(1)
+            print("ZeroDivisionError:", msg)
+            return

@@ -13,9 +13,11 @@ class Baratheon(Character):
         self.hairs = "dark"
 
     def __str__(self):
+        """String representation of the Baratheon character"""
         return f"Vector: ('{self.family_name}', '{self.eyes}', '{self.hairs}')"
 
     def __repr__(self):
+        """Representation of the Baratheon character"""
         return self.__str__()
 
     def die(self):
