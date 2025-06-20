@@ -1,10 +1,11 @@
 def callLimit(limit: int):
     """Decorator to limit the number of calls to a function."""
     count = 0
+
     def callLimiter(function):
-        # docstring ?
+        """Actual decorator that tracks the call count."""
         def limit_function(*args: any, **kwds: any):
-            # docstring ?
+            """Function that limits the number of calls"""
             nonlocal count
             if (count) < limit:
                 count += 1

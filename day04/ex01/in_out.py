@@ -18,7 +18,7 @@ def outer(x: int | float, function) -> object:
     count = 0
 
     def inner() -> float:
-        # docstring ?
+        """Applies the function to x and increments the count."""
         nonlocal count
         res = x
         for i in range(count + 1):

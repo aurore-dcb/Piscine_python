@@ -20,4 +20,5 @@ class Student:
     id: str = field(init=False, default_factory=generate_id)
 
     def __post_init__(self):
+        """Post-initialization to set the login attribute."""
         self.login = f"{self.name[0]}{self.surname}"

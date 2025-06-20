@@ -5,6 +5,7 @@ import numpy as np
 
 
 def convert_to_number(value) -> int:
+    """Convert a string representation of a number with suffixes to an integer."""
     if isinstance(value, str):
         value = value.strip().lower()
         if value.endswith('b'):
@@ -22,6 +23,7 @@ def convert_to_number(value) -> int:
 
 
 def format_func(value, tick_number):
+    """Format the y-axis ticks to display in millions."""
     return f'{int(value / 1000000)}M'
 
 
@@ -29,7 +31,6 @@ def aff_pop(country1: str, country2: str) -> None:
     """Display a graph that compare two country population"""
     data = load("../population_total.csv")
     if data is not None:
-        print(data)
         data_clean = data.loc[:, '1801':'2050'].map(convert_to_number)
         columns = data_clean.columns.to_numpy().astype(np.int64)
         country1_data = data_clean.loc[country1].to_numpy()
@@ -44,7 +45,6 @@ def aff_pop(country1: str, country2: str) -> None:
         plt.plot(columns, country2_data, label=country2, color='Green')
         plt.legend(loc='lower right')
         plt.show()
-
     else:
         print("No data available.")
     return
